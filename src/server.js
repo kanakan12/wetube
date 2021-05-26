@@ -4,7 +4,12 @@ const PORT  = 4000;
 
 const app = express();
 
-app.get("/", (req, res) => {
+const gossipMiddleware = (req, res, next) => {
+    console.log("middle");
+    next();
+}
+
+app.get("/", gossipMiddleware, (req, res) => {
     return res.send("test");
 });
 
